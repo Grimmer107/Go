@@ -6,6 +6,8 @@ import (
 	"math"
 	"math/cmplx"
 	"math/rand"
+	"runtime"
+	"time"
 )
 
 // function syntax
@@ -73,4 +75,63 @@ func main() {
 	const isChecked = true
 	fmt.Printf("Type %T Value %v\n", isChecked, isChecked)
 	fmt.Printf("Type %T Value %v\n", Pi, Pi)
+
+	// for loop
+	for i := 0; i < 10; i++ {
+		fmt.Print(i)
+	}
+
+	// The init and post statements are optional and can be dropped
+	i = 0
+	for i < 10 {
+		fmt.Print(i)
+		i += 1
+	}
+	fmt.Println()
+
+	// infinite loop
+	// for {
+	// 	fmt.Print("hello")
+	// }
+
+	// if - else
+	e := 24
+	if e%2 == 0 {
+		fmt.Println("Even")
+	} else {
+		fmt.Println("Odd")
+	}
+
+	// if with short statement
+	p := 3.2
+	if v := math.Pow(2, p); v > 10 {
+		fmt.Println("Above limit")
+	} else {
+		fmt.Println("Within limit")
+	}
+
+	// switch statement
+	switch os := runtime.GOOS; os {
+	case "darwin":
+		fmt.Println("MAC OS")
+	case "linux":
+		fmt.Println("Linux")
+	default:
+		fmt.Println("Windows")
+	}
+
+	// switch without condition
+	t := time.Now()
+	switch {
+	case t.Hour() < 12:
+		fmt.Println("Good morning!")
+	case t.Hour() < 17:
+		fmt.Println("Good afternoon.")
+	default:
+		fmt.Println("Good evening.")
+	}
+
+	// defer
+	defer fmt.Println("World")
+	fmt.Print("Hello ")
 }
