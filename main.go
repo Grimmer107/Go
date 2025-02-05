@@ -27,6 +27,12 @@ func split(sum int) (x, y int) {
 	return
 }
 
+// struct
+type Vertex struct {
+	X int
+	Y int
+}
+
 // constant
 const Pi = 3.14
 
@@ -134,4 +140,29 @@ func main() {
 	// defer
 	defer fmt.Println("World")
 	fmt.Print("Hello ")
+
+	// pointers
+	e, h := 42, 2701
+
+	g := &e         // point to e
+	fmt.Println(*g) // read i through the pointer
+	*g = 21         // set i through the pointer
+	fmt.Println(e)  // see the new value of e
+
+	g = &h         // point to f
+	*g = *g / 37   // divide f through the pointer
+	fmt.Println(h) // see the new value of f
+
+	// struct
+	v1 := Vertex{1, 2}
+	fmt.Println(v1, v1.X, v1.Y)
+
+	// pointer to struct
+	ps := &v1
+	ps.X = 1e9
+	fmt.Println(v1)
+
+	// struct literal
+	v2 := Vertex{X: 7}
+	fmt.Println(v2)
 }
