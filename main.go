@@ -7,6 +7,7 @@ import (
 	"math/cmplx"
 	"math/rand"
 	"runtime"
+	"strings"
 	"time"
 )
 
@@ -25,6 +26,10 @@ func split(sum int) (x, y int) {
 	x = sum * 4 / 9
 	y = sum - x
 	return
+}
+
+func printSlice(s []int) {
+	fmt.Printf("len=%d cap=%d %v\n", len(s), cap(s), s)
 }
 
 // struct
@@ -165,4 +170,100 @@ func main() {
 	// struct literal
 	v2 := Vertex{X: 7}
 	fmt.Println(v2)
+
+	// Arrays
+	var s [2]string
+	s[0] = "hello"
+	s[1] = "world"
+	fmt.Println(s[0], s[1], s)
+
+	// array literal
+	var q = [5]int{1, 2, 3, 4, 5}
+	fmt.Println(q)
+
+	// slices
+	var slice []int = q[1:4]
+	fmt.Println(slice)
+
+	// slice literal
+	sl := []int{1, 2, 3, 4}
+	fmt.Println(sl)
+
+	sl2 := []struct {
+		i int
+		b bool
+	}{
+		{1, true},
+		{2, false},
+		{3, false},
+	}
+	fmt.Println(sl2)
+
+	// slice defaults
+	sd := []int{2, 3, 5, 7, 11, 13}
+	fmt.Println(sd[:2])
+	fmt.Println(sd[1:])
+
+	// slice length and capacity
+	sc := []int{2, 3, 5, 7, 11, 13}
+	printSlice(sc)
+
+	// Slice the slice to give it zero length.
+	sc = sc[:0]
+	printSlice(sc)
+
+	// Extend its length.
+	sc = sc[:4]
+	printSlice(sc)
+
+	// Drop its first two values.
+	sc = sc[2:]
+	printSlice(sc)
+
+	// Nil slices
+	var ns []int
+	fmt.Println(ns, len(ns), cap(ns))
+	if ns == nil {
+		fmt.Println("nil!")
+	}
+
+	// creating slice with make
+	csm := make([]int, 5)
+	fmt.Println(csm, cap(csm), len(csm))
+
+	csm = make([]int, 5, 8)
+	fmt.Println(csm, cap(csm), len(csm))
+
+	// slices with slices
+	board := [][]string{
+		[]string{"-", "-", "-"},
+		[]string{"-", "-", "-"},
+		[]string{"-", "-", "-"},
+	}
+
+	board[0][0] = "x"
+	board[1][1] = "x"
+	board[2][2] = "x"
+
+	for row := 0; row < 3; row++ {
+		// for col := 0; col < 3; col++ {
+		// 	fmt.Printf("%s ", board[row][col])
+		// }
+		// fmt.Println()
+		fmt.Printf("%s\n", strings.Join(board[row], " "))
+	}
+
+	// appending to a slice
+	var sa []int
+	sa = append(sa, 1)
+	fmt.Println(sa)
+
+	sa = append(sa, 2, 3)
+	fmt.Println(sa)
+
+	// range
+	sr := []int{0, 1, 4, 9, 16}
+	for index, value := range sr {
+		fmt.Printf("2^%d = %d\n", index, value)
+	}
 }
