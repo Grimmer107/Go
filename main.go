@@ -32,6 +32,10 @@ func printSlice(s []int) {
 	fmt.Printf("len=%d cap=%d %v\n", len(s), cap(s), s)
 }
 
+func compute(fn func(float64, float64) float64) float64 {
+	return fn(3, 4)
+}
+
 // struct
 type Vertex struct {
 	X int
@@ -302,4 +306,11 @@ func main() {
 	v, ok := mm["Answer"]
 	fmt.Println("The value:", v, "Present?", ok)
 
+	// function values
+	hypot := func(x, y float64) float64 {
+		return math.Sqrt(x*x + y*y)
+	}
+	fmt.Println(hypot(5, 12))
+	fmt.Println(compute(hypot))
+	fmt.Println(compute(math.Pow))
 }
