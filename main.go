@@ -266,4 +266,40 @@ func main() {
 	for index, value := range sr {
 		fmt.Printf("2^%d = %d\n", index, value)
 	}
+
+	// maps
+	var mp map[string]Vertex
+	// mp["me"] = Vertex{1, 2}  assigning keys to nil map
+	fmt.Println(mp)
+
+	mp = make(map[string]Vertex)
+	mp["center"] = Vertex{2, 2}
+	fmt.Println(mp)
+
+	// map literals
+	mp = map[string]Vertex{
+		"Bell Labs": {
+			40, -74,
+		},
+		"Google": {
+			3, -1,
+		},
+	}
+	fmt.Println(mp)
+
+	// mutating maps
+	mm := make(map[string]int)
+
+	mm["Answer"] = 42
+	fmt.Println("The value:", mm["Answer"])
+
+	mm["Answer"] = 48
+	fmt.Println("The value:", mm["Answer"])
+
+	delete(mm, "Answer")
+	fmt.Println("The value:", mm["Answer"])
+
+	v, ok := mm["Answer"]
+	fmt.Println("The value:", v, "Present?", ok)
+
 }
